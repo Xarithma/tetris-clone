@@ -12,10 +12,12 @@ Just launch your system's executable which can be found
 at the releases.
 
 # How to build?
-On any system, (SFML)[https://www.sfml-dev.org/download.php] is required!
+On any system, [SFML](https://www.sfml-dev.org/download.php) is required!
 
 Linux/MacOS:
 
-`g++ src/main.cpp -o tetris -lsfml-graphics -lsfml-window -lsfml-system`
+```bash
+g++ src/main.cpp -o tetris -lsfml-graphics -lsfml-window -lsfml-system
+```
 
-`./tetris`
+I don't know how to do it on Windows, tbh :)
