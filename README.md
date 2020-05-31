@@ -15,6 +15,7 @@ at the releases.
 On any system, (SFML)[https://www.sfml-dev.org/download.php] is required!
 
 Linux/MacOS:
+
 `g++ src/main.cpp -o tetris -lsfml-graphics -lsfml-window -lsfml-system`
 
 `./tetris`
