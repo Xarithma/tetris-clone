@@ -1,8 +1,26 @@
 #include <SFML/Graphics.hpp>
 #include <time.h>
+#include <iostream>
 using namespace sf;
 
+// ! Need to be in the game:
 // TODO: Colors
+// TODO: Save shapes
+// TODO: Predict next shape
+// TODO: Losing
+
+// ? Should be in the game:
+// New graphics
+// Improved UI
+// Main menu
+// Replace "cleared lines" with "actual scores"
+
+// ? Would be in the game:
+// Multiplayer
+
+// ? Stuff that will never be in the game:
+// Block dating sim
+// Battle royale
 
 const int height = 20;
 const int width = 10;
@@ -62,8 +80,25 @@ int main()
     int color = 1;
 
     // Game clock variables.
-    float timer = 0, delay = 0.3f;
+    float timer = 0.f, delay = 0.3f;
     static Clock clock;
+
+    int score = 0.f;
+
+    static Font font;
+    if (!font.loadFromFile("src/hemi.ttf"))
+        std::cout << "Error loading font file." << std::endl;
+
+    static Text scoreTextLabel;
+    scoreTextLabel.setFont(font);
+    scoreTextLabel.setString("Cleared:");
+    scoreTextLabel.setCharacterSize(24);
+    scoreTextLabel.setFillColor(Color::White);
+
+    static Text scoreLabel;
+    scoreLabel.setFont(font);
+    scoreLabel.setCharacterSize(24);
+    scoreLabel.setFillColor(Color::White);
 
     while (window.isOpen())
     {
@@ -97,7 +132,6 @@ int main()
                 default:
                     break;
                 }
-
                 break;
 
             default:
@@ -192,6 +226,10 @@ int main()
                 k--;
         }
 
+        // * Scores
+        score += k;
+        scoreLabel.setString(std::to_string(score));
+
         // * Draw to window
         window.clear(Color::Black);
 
@@ -212,6 +250,12 @@ int main()
             shape.setPosition(a[i].x * 18, a[i].y * 18);
             window.draw(shape);
         }
+
+        scoreTextLabel.setPosition(200, 240);
+        window.draw(scoreTextLabel);
+
+        scoreLabel.setPosition(235, 270);
+        window.draw(scoreLabel);
 
         window.display();
     }
